@@ -1,3 +1,10 @@
+import Image from "next/image";
+import Link from "next/link";
+import featureOne from "./assets/images/feature-one.png";
+import featureThree from "./assets/images/feature-three.png";
+import featureTwo from "./assets/images/feature-two.png";
+import logo from "./assets/images/logo.png";
+
 export default async function Home() {
 	return (
 		<>
@@ -7,7 +14,44 @@ export default async function Home() {
 					<Hero />
 				</div>
 			</div>
-			<main></main>
+			<main className="bg-black text-white">
+				<section>
+					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
+						<div className="space-y-3 max-w-sm text-center">
+							<h3 className="font-bold text-4xl">On-chain store</h3>
+							<p className="text-xl text-gray-300">
+								Create a product, setup your store and start selling to your
+								audience.
+							</p>
+						</div>
+						<Image src={featureOne} alt="On-chain store" width={400} />
+					</div>
+				</section>
+				<section>
+					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
+						<Image src={featureTwo} alt="On-chain store" width={400} />
+						<div className="space-y-3 max-w-sm text-center">
+							<h3 className="font-bold text-3xl">Grow your product</h3>
+							<p className="text-lg text-gray-300">
+								We provide tools and analytics so you can use data to improve
+								your product.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
+						<div className="space-y-3 max-w-sm text-center">
+							<h3 className="font-bold text-3xl">Earn in crypto</h3>
+							<p className="text-lg text-gray-300">
+								Accept payments in cryptocurrency. Payments can be settled in
+								SOL, USDC and USDT.
+							</p>
+						</div>
+						<Image src={featureThree} alt="On-chain store" width={400} />
+					</div>
+				</section>
+			</main>
 		</>
 	);
 }
@@ -23,9 +67,11 @@ function Hero() {
 					<p className="text-center text-xl text-gray-300">
 						Setup your store. Sell your product. Earn in crypto.
 					</p>
-					<button className="font-semibold py-3 rounded-lg text-gray-50 text-center place-self-center px-9 bg-black">
-						Get started
-					</button>
+					<Link href="/profile/create" className="place-self-center">
+						<button className="font-semibold py-3 rounded-lg text-gray-50 px-20 bg-black">
+							Get started
+						</button>
+					</Link>
 				</div>
 			</div>
 		</section>
@@ -36,11 +82,15 @@ function Header() {
 	return (
 		<header className="text-white">
 			<div className="container mx-auto max-w-6xl px-8 py-8">
-				<div className="flex justify-between">
-					<h1 className="font-bold">Logo</h1>
+				<div className="flex justify-between items-center">
+					<Link href="#">
+						<Image src={logo} alt="Maker3 Logo" width={100} />
+					</Link>
 					<nav>
 						<ul>
-							<li>Discover</li>
+							<li>
+								<Link href="#">Discover</Link>
+							</li>
 						</ul>
 					</nav>
 				</div>
