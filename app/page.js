@@ -1,91 +1,50 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+export default async function Home() {
+	return (
+		<>
+			<div className="bg-[url(./assets/images/hero-bg.svg)] bg-no-repeat bg-center bg-cover">
+				<div className="flex flex-col min-h-screen">
+					<Header />
+					<Hero />
+				</div>
+			</div>
+			<main></main>
+		</>
+	);
+}
 
-const inter = Inter({ subsets: ['latin'] })
+function Hero() {
+	return (
+		<section className="text-white flex-1 relative">
+			<div className="container mx-auto max-w-6xl px-8 py-4">
+				<div className="grid place-content-center absolute inset-0 space-y-16">
+					<h2 className="font-bold text-6xl text-center">
+						Open your store on web3
+					</h2>
+					<p className="text-center text-xl text-gray-300">
+						Setup your store. Sell your product. Earn in crypto.
+					</p>
+					<button className="font-semibold py-3 rounded-lg text-gray-50 text-center place-self-center px-9 bg-black">
+						Get started
+					</button>
+				</div>
+			</div>
+		</section>
+	);
+}
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+function Header() {
+	return (
+		<header className="text-white">
+			<div className="container mx-auto max-w-6xl px-8 py-8">
+				<div className="flex justify-between">
+					<h1 className="font-bold">Logo</h1>
+					<nav>
+						<ul>
+							<li>Discover</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+	);
 }
