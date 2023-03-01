@@ -81,10 +81,10 @@ function Hero() {
 function Header() {
 	return (
 		<header className="text-white">
-			<div className="container mx-auto max-w-6xl px-8 py-8">
+			<div className="container mx-auto max-w-6xl p-8">
 				<div className="flex justify-between items-center">
-					<Link href="#">
-						<Image src={logo} alt="Maker3 Logo" width={100} />
+					<Link href="/">
+						<Image src={logo} alt="Maker3 Logo" width={130} />
 					</Link>
 					<nav>
 						<ul>
