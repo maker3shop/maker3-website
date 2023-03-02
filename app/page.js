@@ -14,7 +14,7 @@ export default async function Home() {
 					<Hero />
 				</div>
 			</div>
-			<main className="bg-black text-white">
+			<main className="bg-dark text-white">
 				<section>
 					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
 						<div className="space-y-3 max-w-sm text-center">

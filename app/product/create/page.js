@@ -7,7 +7,7 @@ import logo from "../../assets/images/logo.png";
 
 export default function CreaeProductPage() {
 	return (
-		<div className="bg-black min-h-screen flex flex-col">
+		<div className="bg-dark min-h-screen flex flex-col">
 			<header>
 				<div className="container mx-auto max-w-6xl p-8 flex items-center justify-between">
 					<Link href="/">
@@ -17,13 +17,13 @@ export default function CreaeProductPage() {
 				</div>
 			</header>
 			<main className="flex-1">
-				<section className="mt-16">
+				<section>
 					<div className="container mx-auto max-w-6xl px-8 text-white">
 						<div className="grid place-content-center">
-							<p className="text-xl text-semibold text-gray-400 text-center mb-1">
+							<p className="text-2xl text-semibold text-gray-400 text-center mb-1">
 								Create product
 							</p>
-							<form className="flex flex-col items-center space-y-3 mt-8 w-72">
+							<form className="flex flex-col items-center space-y-3 mt-8 w-80">
 								<div className="space-y-2 flex flex-col w-full">
 									<label id="name" className="text-gray-300">
 										Title
@@ -33,7 +33,7 @@ export default function CreaeProductPage() {
 										id="title"
 										type="text"
 										placeholder="Your project title"
-										className="px-3 py-1 rounded-md bg-gray-50 opacity-10"
+										className="px-3 py-2 rounded-md bg-input-dark placeholder:text-gray-400 text-gray-200"
 									/>
 								</div>
 								<div className="space-y-2 flex flex-col w-full">
@@ -45,7 +45,7 @@ export default function CreaeProductPage() {
 										id="price"
 										type="text"
 										placeholder="in USDC"
-										className="px-3 py-1 rounded-md bg-gray-50 opacity-10"
+										className="px-3 py-2 rounded-md bg-input-dark placeholder:text-gray-400 text-gray-200"
 									/>
 								</div>
 								<div className="space-y-2 flex flex-col w-full">
@@ -56,7 +56,7 @@ export default function CreaeProductPage() {
 										name="description"
 										id="description"
 										placeholder="Tell us about your project"
-										className="px-3 py-1 rounded-md bg-gray-50 opacity-10 h-32"
+										className="px-3 py-1 rounded-md bg-input-dark placeholder:text-gray-400 text-gray-200 h-32"
 									/>
 								</div>
 								<div>
