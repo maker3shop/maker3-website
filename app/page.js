@@ -74,7 +74,7 @@ function Hero() {
 						Setup your store. Sell your product. Earn in crypto.
 					</p>
 					<Link href="/profile/create" className="place-self-center">
-						<button className="font-semibold text-xl py-3 rounded-lg text-gray-50 px-20 bg-black opacity-70 shadow-2xl shadow-[#5429f2]">
+						<button className="font-semibold text-xl py-3 rounded-lg text-gray-50 px-20 bg-black opacity-70 shadow-[4px_4px_4px_0px_#5429f240]">
 							Get started
 						</button>
 					</Link>
