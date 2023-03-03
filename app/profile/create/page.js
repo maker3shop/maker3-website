@@ -91,7 +91,7 @@ export default function CreateProfile() {
 									placeholder="Bio"
 									value={bio}
 									onChange={(e) => setBio(e.target.value)}
-									className="px-3 py-2 rounded-md w-full h-28 bg-input-dark placeholder:text-gray-400 text-gray-200"
+									className="px-3 py-2 rounded-md w-full h-28 text-2xl bg-input-dark placeholder:text-gray-400 text-gray-200"
 								/>
 								<div>
 									<button className="font-semibold py-2 rounded-lg text-gray-50 px-20 bg-blue-700 mt-5">

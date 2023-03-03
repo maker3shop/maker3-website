@@ -67,15 +67,18 @@ function Hero() {
 		<section className="text-white flex-1 relative">
 			<div className="container mx-auto max-w-6xl px-8 py-4">
 				<div className="grid place-content-center absolute inset-0 space-y-16">
-					<h2 className="font-bold text-6xl text-center bg-gradient-to-b from-white via-white text-transparent bg-clip-text">
+					<h2 className="font-bold text-6xl text-center text-gray-200">
 						Open your store on web3
 					</h2>
-					<p className="text-center text-xl text-gray-300 bg-gradient-to-b from-white via-white text-transparent bg-clip-text">
+					<p className="text-center text-xl bg-gradient-to-b from-white via-white text-transparent bg-clip-text">
 						Setup your store. Sell your product. Earn in crypto.
 					</p>
 					<Link href="/profile/create" className="place-self-center">
-						<button className="font-semibold text-xl py-3 rounded-lg text-gray-50 px-20 bg-black opacity-70 shadow-[4px_4px_4px_0px_#5429f240]">
-							Get started
+						<button
+							className="font-semibold text-xl py-3 rounded-lg text-gray-50 px-20 bg-black opacity-80 shadow-[4px_4px_4px_0px_#5429f240]"
+							disabled={true}
+						>
+							Coming soon
 						</button>
 					</Link>
 				</div>
