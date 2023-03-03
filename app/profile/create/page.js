@@ -36,13 +36,15 @@ export default function CreateProfile() {
 				<section>
 					<div className="container mx-auto max-w-6xl px-8 text-white">
 						<div className="grid place-content-center">
-							<h3 className=" text-2xl text-center">Welcome to Maker3</h3>
-							<p className=" text-xl text-gray-400 text-center">
+							<h3 className="text-2xl text-semibold bg-gradient-to-b from-white via-white text-transparent bg-clip-text text-center mb-[0.5]">
+								Welcome to Maker3
+							</h3>
+							<p className=" text-xl text-center text-gray-200">
 								Create your on-chain profile
 							</p>
 							<form
 								onSubmit={handleSubmit}
-								className="flex flex-col items-center space-y-3 mt-8"
+								className="flex flex-col items-center gap-y-3 mt-8 w-80"
 							>
 								<div className="mb-4 flex items-center flex-col">
 									<Image
@@ -89,11 +91,13 @@ export default function CreateProfile() {
 									placeholder="Bio"
 									value={bio}
 									onChange={(e) => setBio(e.target.value)}
-									className="px-3 py-1 rounded-md w-full h-24 bg-input-dark placeholder:text-gray-400 text-gray-200"
+									className="px-3 py-2 rounded-md w-full h-28 bg-input-dark placeholder:text-gray-400 text-gray-200"
 								/>
-								<button className="font-semibold py-2 rounded-lg text-gray-50 px-20 bg-blue-700">
-									Create
-								</button>
+								<div>
+									<button className="font-semibold py-2 rounded-lg text-gray-50 px-20 bg-blue-700 mt-5">
+										Create
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>
