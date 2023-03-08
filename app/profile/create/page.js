@@ -1,8 +1,13 @@
 "use client";
 
+import { useCreateProfile, useCreateUser } from "@gumhq/react-sdk";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useGumContext } from "../../../context/GumProvider";
 import avatar from "../../assets/images/avatar.png";
 import gumLogo from "../../assets/images/gum-logo.png";
 import logo from "../../assets/images/logo.png";
@@ -14,32 +19,70 @@ export default function CreateProfile() {
 
 	const fileInputRef = React.useRef();
 
-	function handleSubmit(event) {
+	const gumContext = useGumContext();
+	const {
+		create: createUser,
+		userPDA,
+		error: userError,
+	} = useCreateUser(gumContext);
+	const {
+		create: createProfile,
+		profilePDA,
+		error: profileError,
+	} = useCreateProfile(gumContext);
+
+	const wallet = useWallet();
+
+	const storage = new ThirdwebStorage();
+
+	async function handleSubmit(event) {
 		event.preventDefault();
 
-		console.log({ name, bio, avatarFile });
+		const metadata = {
+			name,
+			bio,
+			website: "Maker3",
+			image: avatarFile,
+		};
+
+		console.log("creating user...");
+		createUser(wallet.publicKey);
+
+		console.log("uploading metadata...");
+		const uri = await storage.upload(metadata);
+		console.log(uri);
+
+		console.log("creating profile...");
+		createProfile(uri, "Professional", userPDA, wallet.publicKey);
+		console.log("Profile created successfully");
+	}
+
+	if (userError) {
+		console.log(userError);
+	}
+
+	if (profileError) {
+		console.log(profileError);
 	}
 
 	return (
-		<div className="bg-dark min-h-screen flex flex-col">
+		<div className="min-h-screen flex flex-col">
 			<header>
 				<div className="container mx-auto max-w-6xl p-8 flex justify-between items-center">
-					<Link href="/">
-						<Image src={logo} alt="Maker3 logo" width={130} />
+					<Link href="/" className="text-2xl font-bold">
+						Maker3
 					</Link>
-					<button className="font-semibold py-2 rounded-lg text-gray-50 px-8 bg-slate-700">
-						Connect wallet
-					</button>
+					<WalletMultiButton />
 				</div>
 			</header>
 			<main className="flex-1">
 				<section>
-					<div className="container mx-auto max-w-6xl px-8 text-white">
+					<div className="container mx-auto max-w-6xl px-8">
 						<div className="grid place-content-center">
-							<h3 className="text-2xl text-semibold bg-gradient-to-b from-white via-white text-transparent bg-clip-text text-center mb-[0.5]">
+							<h3 className="text-2xl text-semibold text-transparent bg-clip-text text-center mb-[0.5]">
 								Welcome to Maker3
 							</h3>
-							<p className=" text-xl text-center text-gray-200">
+							<p className=" text-xl text-center ">
 								Create your on-chain profile
 							</p>
 							<form
@@ -83,7 +126,7 @@ export default function CreateProfile() {
 									placeholder="Name"
 									value={name}
 									onChange={(e) => setName(e.target.value)}
-									className="px-3 py-2 rounded-md bg-input-dark w-full placeholder:text-gray-400 text-gray-200"
+									className="px-3 py-2 rounded-md w-full"
 								/>
 								<textarea
 									name="bio"
@@ -91,10 +134,10 @@ export default function CreateProfile() {
 									placeholder="Bio"
 									value={bio}
 									onChange={(e) => setBio(e.target.value)}
-									className="px-3 py-2 rounded-md w-full h-28 text-2xl bg-input-dark placeholder:text-gray-400 text-gray-200"
+									className="px-3 py-2 rounded-md w-full h-28 text-2xl"
 								/>
 								<div>
-									<button className="font-semibold py-2 rounded-lg text-gray-50 px-20 bg-blue-700 mt-5">
+									<button className="font-semibold py-2 rounded-lg px-20 mt-5">
 										Create
 									</button>
 								</div>
@@ -107,7 +150,7 @@ export default function CreateProfile() {
 				<div className="container mx-auto max-w-6xl py-4 ">
 					<div className="flex items-center gap-x-2 justify-center">
 						<Image src={gumLogo} alt="Gum logo" />
-						<p className="text-center text-pink-200">Powered by gum</p>
+						<p className="text-center">Powered by gum</p>
 					</div>
 				</div>
 			</footer>

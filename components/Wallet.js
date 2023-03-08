@@ -1,13 +1,16 @@
+"use client";
+
+import React from "react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
 	ConnectionProvider,
 	WalletProvider,
 } from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import {
-	WalletDisconnectButton,
-	WalletModalProvider,
-	WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
+	GlowWalletAdapter,
+	PhantomWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -17,15 +20,15 @@ export default function Wallet({ children }) {
 
 	const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
 
+	const wallets = React.useMemo(
+		() => [new GlowWalletAdapter(network), new PhantomWalletAdapter(network)],
+		[network]
+	);
+
 	return (
 		<ConnectionProvider endpoint={endpoint}>
 			<WalletProvider wallets={wallets} autoConnect>
-				<WalletModalProvider>
-					<WalletMultiButton>
-						<WalletDisconnectButton />
-						{children}
-					</WalletMultiButton>
-				</WalletModalProvider>
+				<WalletModalProvider>{children}</WalletModalProvider>
 			</WalletProvider>
 		</ConnectionProvider>
 	);

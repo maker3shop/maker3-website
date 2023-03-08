@@ -1,114 +1,119 @@
+import chart from "@/app/assets/images/chart.svg";
+import coins from "@/app/assets/images/coins.svg";
+import dashboardPreview from "@/app/assets/images/dashboard-preview.svg";
+import logo from "@/app/assets/images/logo.svg";
+import shop from "@/app/assets/images/shop.svg";
+import Container from "@/components/Container";
+import { Button } from "@/components/ui/Button";
+import { Heading1, Heading2, Text } from "@/components/ui/Typography";
+import { Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import featureOne from "./assets/images/feature-one.png";
-import featureThree from "./assets/images/feature-three.png";
-import featureTwo from "./assets/images/feature-two.png";
-import logo from "./assets/images/logo.png";
 
 export default async function Home() {
 	return (
 		<>
-			<div className="bg-[url(./assets/images/hero-bg.svg)] bg-no-repeat bg-center bg-cover">
-				<div className="flex flex-col min-h-screen">
-					<Header />
-					<Hero />
+			<header>
+				<Container>
+					<div className="flex items-center py-4 justify-between">
+						<Link href="/" className="text-xl font-bold">
+							<Image src={logo} alt="Maker3 logo" width={80} />
+						</Link>
+						<nav>
+							<Link href="/">
+								<Button variant="link">Discover products</Button>
+							</Link>
+							<Link href="/">
+								<Button variant="link">About us</Button>
+							</Link>
+							<Button variant="outline" className="ml-auto">
+								Start selling
+							</Button>
+						</nav>
+					</div>
+				</Container>
+			</header>
+			<main>
+				<section className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
+					<Container>
+						<div className="h-[560px] text-center pt-24 space-y-12">
+							<Heading1>Open your store on Web3</Heading1>
+							<Text>
+								One way stop for creators to sell digital products and services
+							</Text>
+							<Button className="place-self-center mt-14" size="lg">
+								Start selling
+							</Button>
+						</div>
+					</Container>
+				</section>
+				<div className="grid place-content-center mt-[-164px]">
+					<Image
+						src={dashboardPreview}
+						alt="Hero image of dashboard page"
+						width={800}
+					/>
 				</div>
-			</div>
-			<main className="bg-dark text-white">
-				<section className="bg-gradient-to-b from-[#2d244f]">
-					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
-						<div className="space-y-3 max-w-sm text-center">
-							<h3 className="font-bold text-4xl bg-gradient-to-r from-[#9270c4] via-[#f7c2b2] to-[#e4c745]  text-transparent bg-clip-text">
-								On-chain store
-							</h3>
-							<p className="text-xl text-gray-300">
-								Create a product, setup your store and start selling to your
-								audience.
-							</p>
+				<section className="bg-gray-100 mt-8">
+					<Container>
+						<div className="flex flex-1 py-14 items-center justify-around">
+							<Image src={shop} width={300} alt="Open on-chain store" />
+							<div className="max-w-sm">
+								<Heading2>Open your on-chain store today</Heading2>
+								<Text>
+									Create a product, setup your store and start selling to your
+									audience.
+								</Text>
+							</div>
 						</div>
-						<Image src={featureOne} alt="On-chain store" width={400} />
-					</div>
+					</Container>
 				</section>
 				<section>
-					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
-						<Image src={featureTwo} alt="On-chain store" width={400} />
-						<div className="space-y-3 max-w-sm text-center">
-							<h3 className="font-bold text-3xl bg-gradient-to-r from-[#9270c4] via-[#f7c2b2] to-[#e4c745]  text-transparent bg-clip-text">
-								Grow your product
-							</h3>
-							<p className="text-lg text-gray-300">
-								We provide tools and analytics so you can use data to improve
-								your product.
-							</p>
+					<Container>
+						<div className="flex flex-1 py-14 items-center justify-around">
+							<div className="max-w-sm">
+								<Heading2>Grow your product</Heading2>
+								<Text>
+									We provide tools and analytics so you can use data to improve
+									your product.
+								</Text>
+							</div>
+							<Image src={chart} width={280} alt="Open on-chain store" />
 						</div>
-					</div>
+					</Container>
 				</section>
-				<section>
-					<div className="container mx-auto max-w-6xl px-8 py-28 flex items-center justify-between">
-						<div className="space-y-3 max-w-sm text-center">
-							<h3 className="font-bold text-3xl bg-gradient-to-r from-[#9270c4] via-[#f7c2b2] to-[#e4c745]  text-transparent bg-clip-text">
-								Earn in crypto
-							</h3>
-							<p className="text-lg text-gray-300">
-								Accept payments in cryptocurrency. Payments can be settled in
-								SOL, USDC and USDT.
-							</p>
+				<section className="bg-gray-100">
+					<Container>
+						<div className="flex flex-1 py-14 items-center justify-around">
+							<Image src={coins} width={280} alt="Open on-chain store" />
+							<div className="max-w-sm">
+								<Heading2>Earn in SPL tokens</Heading2>
+								<Text>
+									Simply provide your wallet address where you would like to be
+									paid and the payment from product purchase by user will be
+									instantly settled and sent to your wallet.{" "}
+								</Text>
+							</div>
 						</div>
-						<Image src={featureThree} alt="On-chain store" width={400} />
-					</div>
+					</Container>
 				</section>
+				<footer>
+					<Container>
+						<div className="flex items-center justify-between py-4">
+							<Link href="/" className="text-2xl font-bold">
+								<Image src={logo} alt="Maker3 logo" width={80} />
+							</Link>
+							<ul className="flex gap-1">
+								<li>
+									<Link target="_blank" href="https://twitter.com/maker3shop">
+										<Twitter color="black" size={24} />
+									</Link>
+								</li>
+							</ul>
+						</div>
+					</Container>
+				</footer>
 			</main>
 		</>
-	);
-}
-
-function Hero() {
-	return (
-		<section className="text-white flex-1 relative">
-			<div className="container mx-auto max-w-6xl px-8 py-4">
-				<div className="grid place-content-center absolute inset-0 space-y-16">
-					<h2 className="font-bold text-6xl text-center text-gray-200">
-						Open your store on web3
-					</h2>
-					<p className="text-center text-xl bg-gradient-to-b from-white via-white text-transparent bg-clip-text">
-						Setup your store. Sell your product. Earn in crypto.
-					</p>
-					<Link href="/profile/create" className="place-self-center">
-						<button
-							className="font-semibold text-xl py-3 rounded-lg text-gray-50 px-20 bg-black opacity-80 shadow-[4px_4px_4px_0px_#5429f240]"
-							disabled={true}
-						>
-							Coming soon
-						</button>
-					</Link>
-				</div>
-			</div>
-		</section>
-	);
-}
-
-function Header() {
-	return (
-		<header className="text-white">
-			<div className="container mx-auto max-w-6xl p-8">
-				<div className="flex justify-between items-center">
-					<Link href="/">
-						<Image src={logo} alt="Maker3 Logo" width={130} />
-					</Link>
-					<nav>
-						<ul>
-							<li>
-								<Link
-									className="text-xl font-semibold bg-gradient-to-r from-[#9270c4] via-[#f7c2b2] to-[#e4c745]  text-transparent bg-clip-text"
-									href="/"
-								>
-									Discover
-								</Link>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</header>
 	);
 }
