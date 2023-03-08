@@ -5,7 +5,7 @@ import logo from "@/app/assets/images/logo.svg";
 import shop from "@/app/assets/images/shop.svg";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/Button";
-import { Heading1, Heading2, Text } from "@/components/ui/Typography";
+import { Heading2, Text } from "@/components/ui/Typography";
 import { Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,16 +33,16 @@ export default async function Home() {
 				<section className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
 					<Container>
 						<div className="h-[650px] text-center pt-24">
-							<div className="text-white">
-								<Heading1>Open your store on Web3</Heading1>
-							</div>
-							<div className=" text-white mt-20">
-								<Text>
-									One way stop for creators to sell digital products and
-									services
-								</Text>
-							</div>
-							<Button className="place-self-center mt-20" size="lg">
+							<h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-8xl text-white drop-shadow-[2px_2px_7px_rgba(0,0,0,0.15)]">
+								Open your store on Web3
+							</h1>
+							<p className="leading-7 drop-shadow-[1px_1px_2px_rgba(0,0,0,0.25)] text-2xl text-white mt-20">
+								One way stop for creators to sell digital products and services
+							</p>
+							<Button
+								className="place-self-center mt-20 drop-shadow-[3px_3px_4px_rgba(0,0,0,0.25)]"
+								size="lg"
+							>
 								Start selling
 							</Button>
 						</div>
