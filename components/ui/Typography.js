@@ -1,6 +1,6 @@
 export function Heading1({ children }) {
 	return (
-		<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-6xl">
+		<h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-8xl">
 			{children}
 		</h1>
 	);
@@ -24,6 +24,6 @@ export function Heading3({ children }) {
 
 export function Text({ children }) {
 	return (
-		<p className="leading-7 [&:not(:first-child)]:mt-3 text-lg">{children}</p>
+		<p className="leading-7 [&:not(:first-child)]:mt-3 text-2xl">{children}</p>
 	);
 }

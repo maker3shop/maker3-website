@@ -15,46 +15,47 @@ export default async function Home() {
 		<>
 			<header>
 				<Container>
-					<div className="flex items-center py-4 justify-between">
+					<div className="flex items-center py-4 justify-around">
 						<Link href="/" className="text-xl font-bold">
 							<Image src={logo} alt="Maker3 logo" width={80} />
 						</Link>
-						<nav>
-							<Link href="/">
-								<Button variant="link">Discover products</Button>
-							</Link>
-							<Link href="/">
-								<Button variant="link">About us</Button>
-							</Link>
-							<Button variant="outline" className="ml-auto">
-								Start selling
-							</Button>
-						</nav>
+						<Link href="/">
+							<Button variant="link">Discover products</Button>
+						</Link>
+						<Link href="/">
+							<Button variant="link">About us</Button>
+						</Link>
+						<Button variant="outline">Start selling</Button>
 					</div>
 				</Container>
 			</header>
 			<main>
 				<section className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
 					<Container>
-						<div className="h-[560px] text-center pt-24 space-y-12">
-							<Heading1>Open your store on Web3</Heading1>
-							<Text>
-								One way stop for creators to sell digital products and services
-							</Text>
-							<Button className="place-self-center mt-14" size="lg">
+						<div className="h-[650px] text-center pt-24">
+							<div className="text-white">
+								<Heading1>Open your store on Web3</Heading1>
+							</div>
+							<div className=" text-white mt-20">
+								<Text>
+									One way stop for creators to sell digital products and
+									services
+								</Text>
+							</div>
+							<Button className="place-self-center mt-20" size="lg">
 								Start selling
 							</Button>
 						</div>
 					</Container>
 				</section>
-				<div className="grid place-content-center mt-[-164px]">
+				<div className="grid place-content-center mt-[-150px]">
 					<Image
 						src={dashboardPreview}
 						alt="Hero image of dashboard page"
 						width={800}
 					/>
 				</div>
-				<section className="bg-gray-100 mt-8">
+				<section className="bg-[#E4E4E7] mt-8">
 					<Container>
 						<div className="flex flex-1 py-14 items-center justify-around">
 							<Image src={shop} width={300} alt="Open on-chain store" />
@@ -82,7 +83,7 @@ export default async function Home() {
 						</div>
 					</Container>
 				</section>
-				<section className="bg-gray-100">
+				<section className="bg-[#E4E4E7]">
 					<Container>
 						<div className="flex flex-1 py-14 items-center justify-around">
 							<Image src={coins} width={280} alt="Open on-chain store" />
