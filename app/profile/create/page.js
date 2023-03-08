@@ -1,5 +1,13 @@
 "use client";
 
+import gumLogo from "@/app/assets/images/gum-logo.png";
+import logo from "@/app/assets/images/logo.svg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
+import { Heading3, Text } from "@/components/ui/Typography";
+import { useGumContext } from "@/context/GumProvider";
 import { useCreateProfile, useCreateUser } from "@gumhq/react-sdk";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -7,10 +15,6 @@ import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useGumContext } from "../../../context/GumProvider";
-import avatar from "../../assets/images/avatar.png";
-import gumLogo from "../../assets/images/gum-logo.png";
-import logo from "../../assets/images/logo.png";
 
 export default function CreateProfile() {
 	const [name, setName] = React.useState("");
@@ -70,7 +74,7 @@ export default function CreateProfile() {
 			<header>
 				<div className="container mx-auto max-w-6xl p-8 flex justify-between items-center">
 					<Link href="/" className="text-2xl font-bold">
-						Maker3
+						<Image src={logo} alt="Maker3 Logo" />
 					</Link>
 					<WalletMultiButton />
 				</div>
@@ -78,29 +82,32 @@ export default function CreateProfile() {
 			<main className="flex-1">
 				<section>
 					<div className="container mx-auto max-w-6xl px-8">
-						<div className="grid place-content-center">
-							<h3 className="text-2xl text-semibold text-transparent bg-clip-text text-center mb-[0.5]">
-								Welcome to Maker3
-							</h3>
-							<p className=" text-xl text-center ">
-								Create your on-chain profile
-							</p>
+						<div className="grid place-content-center text-center">
+							<Heading3>Welcome to Maker3</Heading3>
+							<Text>Create your on-chain profile</Text>
 							<form
 								onSubmit={handleSubmit}
 								className="flex flex-col items-center gap-y-3 mt-8 w-80"
 							>
 								<div className="mb-4 flex items-center flex-col">
-									<Image
-										id="avatar"
-										src={avatarFile || avatar}
-										onClick={() => {
-											fileInputRef.current.click();
-										}}
-										alt="avatar"
-										width={70}
-										height={70}
-									/>
-									<input
+									<Avatar className="cursor-pointer">
+										<AvatarImage
+											id="avatar"
+											onClick={() => {
+												fileInputRef.current.click();
+											}}
+											src={avatarFile}
+											alt="avatar"
+										/>
+										<AvatarFallback
+											onClick={() => {
+												fileInputRef.current.click();
+											}}
+										>
+											DB
+										</AvatarFallback>
+									</Avatar>
+									<Input
 										ref={fileInputRef}
 										id="avatar-upload"
 										name="avatar-upload"
@@ -119,7 +126,7 @@ export default function CreateProfile() {
 										}}
 									/>
 								</div>
-								<input
+								<Input
 									name="name"
 									id="name"
 									type="text"
@@ -128,18 +135,16 @@ export default function CreateProfile() {
 									onChange={(e) => setName(e.target.value)}
 									className="px-3 py-2 rounded-md w-full"
 								/>
-								<textarea
+								<Textarea
 									name="bio"
 									id="bio"
 									placeholder="Bio"
 									value={bio}
 									onChange={(e) => setBio(e.target.value)}
-									className="px-3 py-2 rounded-md w-full h-28 text-2xl"
+									className="px-3 py-2 rounded-md w-full h-28"
 								/>
 								<div>
-									<button className="font-semibold py-2 rounded-lg px-20 mt-5">
-										Create
-									</button>
+									<Button>Create</Button>
 								</div>
 							</form>
 						</div>
@@ -150,7 +155,7 @@ export default function CreateProfile() {
 				<div className="container mx-auto max-w-6xl py-4 ">
 					<div className="flex items-center gap-x-2 justify-center">
 						<Image src={gumLogo} alt="Gum logo" />
-						<p className="text-center">Powered by gum</p>
+						<p className="text-center text-pink-400">Powered by gum</p>
 					</div>
 				</div>
 			</footer>
