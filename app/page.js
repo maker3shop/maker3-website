@@ -85,7 +85,7 @@ export default async function Home() {
 				</section>
 				<section className="bg-[#E4E4E7]">
 					<Container>
-						<div className="flex flex-1 py-14 items-center justify-around">
+						<div className="flex flex-1 py-16 items-center justify-around">
 							<Image src={coins} width={280} alt="Open on-chain store" />
 							<div className="max-w-sm">
 								<Heading2>Earn in SPL tokens</Heading2>
@@ -98,9 +98,29 @@ export default async function Home() {
 						</div>
 					</Container>
 				</section>
+				<section>
+					<Container>
+						<div className="p-20 grid place-content-center w-[960px] mx-auto bg-[#987DFF] rounded-lg mt-[-32px] drop-shadow-[3px_3px_4px_rgba(0,0,0,0.45)]">
+							<h2 className="text-5xl text-center text-white">
+								What are you waiting for?
+							</h2>
+							<div className="flex justify-around items-center mt-12">
+								<Button className="bg-white text-[#5429F2] px-10 py-6 hover:bg-white hover:opacity-70">
+									Start selling
+								</Button>
+								<Button
+									variant="outline"
+									className="text-white border-white border-2 px-10 py-6 hover:bg-[#987dff] hover:opacity-70"
+								>
+									Discover products
+								</Button>
+							</div>
+						</div>
+					</Container>
+				</section>
 				<footer>
 					<Container>
-						<div className="flex items-center justify-between py-4">
+						<div className="flex items-center justify-between py-12">
 							<Link href="/" className="text-2xl font-bold">
 								<Image src={logo} alt="Maker3 logo" width={80} />
 							</Link>
