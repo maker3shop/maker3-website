@@ -19,13 +19,15 @@ export default async function Home() {
 						<Link href="/" className="text-xl font-bold">
 							<Image src={logo} alt="Maker3 logo" width={80} />
 						</Link>
-						<Link href="/">
+						{/* <Link href="/">
 							<Button variant="ghost" disabled={true}>
 								Discover products
 							</Button>
-						</Link>
-						<Link href="/">
-							<Button variant="link">About us</Button>
+						</Link> */}
+						<Link href="/about">
+							<Button variant="link" className="ml-12">
+								About us
+							</Button>
 						</Link>
 						<Button variant="outline" disabled={true}>
 							Coming soon
@@ -127,23 +129,23 @@ export default async function Home() {
 						</div>
 					</Container>
 				</section>
-				<footer>
-					<Container>
-						<div className="flex items-center justify-between py-12">
-							<Link href="/" className="text-2xl font-bold">
-								<Image src={logo} alt="Maker3 logo" width={80} />
-							</Link>
-							<ul className="flex gap-1">
-								<li>
-									<Link target="_blank" href="https://twitter.com/maker3shop">
-										<Twitter color="black" size={24} />
-									</Link>
-								</li>
-							</ul>
-						</div>
-					</Container>
-				</footer>
 			</main>
+			<footer>
+				<Container>
+					<div className="flex items-center justify-between py-12">
+						<Link href="/" className="text-2xl font-bold">
+							<Image src={logo} alt="Maker3 logo" width={80} />
+						</Link>
+						<ul className="flex gap-1">
+							<li>
+								<Link target="_blank" href="https://twitter.com/maker3shop">
+									<Twitter color="black" size={24} />
+								</Link>
+							</li>
+						</ul>
+					</div>
+				</Container>
+			</footer>
 		</>
 	);
 }
