@@ -20,12 +20,16 @@ export default async function Home() {
 							<Image src={logo} alt="Maker3 logo" width={80} />
 						</Link>
 						<Link href="/">
-							<Button variant="link">Discover products</Button>
+							<Button variant="ghost" disabled={true}>
+								Discover products
+							</Button>
 						</Link>
 						<Link href="/">
 							<Button variant="link">About us</Button>
 						</Link>
-						<Button variant="outline">Start selling</Button>
+						<Button variant="outline" disabled={true}>
+							Coming soon
+						</Button>
 					</div>
 				</Container>
 			</header>
@@ -42,8 +46,9 @@ export default async function Home() {
 							<Button
 								className="place-self-center mt-20 drop-shadow-[3px_3px_4px_rgba(0,0,0,0.25)]"
 								size="lg"
+								disabled={true}
 							>
-								Start selling
+								Coming soon
 							</Button>
 						</div>
 					</Container>
@@ -105,11 +110,15 @@ export default async function Home() {
 								What are you waiting for?
 							</h2>
 							<div className="flex justify-around items-center mt-12">
-								<Button className="bg-white text-[#5429F2] px-10 py-6 hover:bg-white hover:opacity-70">
+								<Button
+									disabled={true}
+									className="bg-white text-[#5429F2] px-10 py-6 hover:bg-white hover:opacity-70"
+								>
 									Start selling
 								</Button>
 								<Button
 									variant="outline"
+									disabled={true}
 									className="text-white border-white border-2 px-10 py-6 hover:bg-[#987dff] hover:opacity-70"
 								>
 									Discover products
