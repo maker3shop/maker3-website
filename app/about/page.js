@@ -42,10 +42,10 @@ export default function About() {
 									<br />I love building products for consumers.
 								</p>
 								<div className="mt-8 flex items-center gap-4">
-									<Link href="https://twitter.com/denimcodes">
+									<Link target="_blank" href="https://twitter.com/denimcodes">
 										<Twitter color="black" size="24" />
 									</Link>
-									<Link href="https://github.com/denimcodes">
+									<Link target="_blank" href="https://github.com/denimcodes">
 										<Github color="black" size="24" />
 									</Link>
 								</div>
@@ -74,10 +74,10 @@ export default function About() {
 									Video editor.
 								</p>
 								<div className="mt-8 flex items-center gap-4">
-									<Link href="https://twitter.com/0xdrac">
+									<Link target="_blank" href="https://twitter.com/0xdrac">
 										<Twitter color="black" size="24" />
 									</Link>
-									<Link href="https://github.com/rohan-201">
+									<Link target="_blank" href="https://github.com/rohan-201">
 										<Github color="black" size="24" />
 									</Link>
 								</div>
