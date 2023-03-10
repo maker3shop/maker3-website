@@ -16,7 +16,7 @@ export function Heading2({ children }) {
 
 export function Heading3({ children }) {
 	return (
-		<h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+		<h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
 			{children}
 		</h3>
 	);
