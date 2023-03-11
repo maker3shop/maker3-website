@@ -9,6 +9,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const product = {
 	banner: openai,
@@ -20,6 +21,28 @@ const product = {
 };
 
 export default function Product() {
+	const router = useRouter();
+
+	async function createSession() {
+		const response = await fetch("/api/create-session", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+			},
+			body: JSON.stringify([
+				{
+					name: product.title,
+					price: product.price,
+					image: "",
+					quantity: 1,
+				},
+			]),
+		});
+
+		const json = await response.json();
+		router.push(json.payment_url);
+	}
+
 	return (
 		<>
 			<header>
@@ -51,8 +74,8 @@ export default function Product() {
 						</div>
 						<aside className="p-4 text-center drop-shadow-lg space-y-4 mt-8 self-start bg-blue-100 rounded-md">
 							<h4 className="text-xl font-semibold">{product.title}</h4>
-							<p className="text-2xl">{`${product.price} SOL`}</p>
-							<Button>Buy</Button>
+							<p className="text-2xl">{`${product.price} USDC`}</p>
+							<Button onClick={createSession}>Buy</Button>
 						</aside>
 					</main>
 				</Container>
