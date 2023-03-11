@@ -1,7 +1,6 @@
 import "./globals.css";
 
-import Wallet from "../components/Wallet";
-import GumProvider from "../context/GumProvider";
+import LayoutClient from "@/components/LayoutClient";
 
 export const metadata = {
 	title: "Maker3 - Web3 Marketplace",
@@ -17,9 +16,7 @@ export default async function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body>
-				<Wallet>
-					<GumProvider>{children}</GumProvider>
-				</Wallet>
+				<LayoutClient>{children}</LayoutClient>
 			</body>
 		</html>
 	);

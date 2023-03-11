@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { useGumContext } from "@/context/GumProvider";
 import { useCreateProfile, useCreateUser } from "@gumhq/react-sdk";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,14 +60,6 @@ export default function CreateProfile() {
 		console.log("Profile created successfully");
 	}
 
-	if (userError) {
-		console.log(userError);
-	}
-
-	if (profileError) {
-		console.log(profileError);
-	}
-
 	return (
 		<div className="min-h-screen flex flex-col bg-[#CDC0FF]">
 			<header>
@@ -74,7 +67,7 @@ export default function CreateProfile() {
 					<Link href="/" className="text-2xl font-bold">
 						<Image src={logo} alt="Maker3 Logo" />
 					</Link>
-					{/* <WalletMultiButton /> */}
+					<WalletMultiButton />
 				</div>
 			</header>
 			<main className="flex-1">
@@ -99,18 +92,8 @@ export default function CreateProfile() {
 										onClick={() => {
 											fileInputRef.current.click();
 										}}
-										className="w-16"
+										className="w-16 cursor-pointer"
 									/>
-									{/* <Avatar className="cursor-pointer">
-										<AvatarImage
-											id="avatar"
-											onClick={() => {
-												fileInputRef.current.click();
-											}}
-											src={avatarEmpty}
-											alt="avatar"
-										/>
-									</Avatar> */}
 									<Input
 										ref={fileInputRef}
 										id="avatar-upload"
