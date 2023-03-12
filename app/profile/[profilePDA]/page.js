@@ -1,24 +1,37 @@
 "use client";
 
-import avatarEmpty from "@/public/images/avatar-empty.svg";
-import logo from "@/public/images/logo.svg";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/Button";
 import { useGumContext } from "@/context/GumProvider";
+import avatarEmpty from "@/public/images/avatar-empty.svg";
+import logo from "@/public/images/logo.svg";
 import { useProfile } from "@gumhq/react-sdk";
+import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function Profile({ params }) {
 	const { profilePDA } = params;
-	console.log({ profilePDA });
+
+	const [avatar, setAvatar] = React.useState("");
 
 	const sdk = useGumContext();
 	const { profile, profileError } = useProfile(sdk, profilePDA);
 
 	React.useEffect(() => {
+		if (!profile) return;
 		console.log({ profile });
+		const storage = new ThirdwebStorage();
+		storage
+			.downloadJSON(profile.metadata.data.avatar)
+			.then((json) => {
+				console.log({ json });
+				setAvatar(json.avatar);
+			})
+			.catch((error) => {
+				console.error({ error });
+			});
 	}, [profile]);
 
 	React.useEffect(() => {
@@ -38,7 +51,13 @@ export default function Profile({ params }) {
 				<section className="py-10">
 					<Container>
 						<div className="flex items-center gap-6">
-							<Image src={avatarEmpty} alt="avatar" width="70" />
+							<Image
+								src={avatar || avatarEmpty}
+								alt="avatar"
+								width="70"
+								height={70}
+								className="rounded-full"
+							/>
 							<div className="space-y-2">
 								<p className="text-xl text-gray-100">
 									{profile?.metadata.data.name}
