@@ -18,10 +18,11 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function CreateProfile() {
+	const [isProfileCreated, setProfileCreated] = React.useState("");
 	const wallet = useWallet();
 
 	const sdk = useGumContext();
-	const { create: createUser, userPDA } = useCreateUser(sdk);
+	const { create: createUser, userPDA, isCreatingUser } = useCreateUser(sdk);
 
 	React.useEffect(() => {
 		console.log("Wallet: ", wallet.publicKey?.toString());
@@ -51,7 +52,7 @@ export default function CreateProfile() {
 							<p className="text-2xl text-[#7A57FF] mb-8">
 								Create your on-chain profile
 							</p>
-							{userPDA ? (
+							{userPDA && !isCreatingUser ? (
 								<ProfileForm
 									sdk={sdk}
 									owner={wallet.publicKey}
@@ -59,9 +60,14 @@ export default function CreateProfile() {
 								/>
 							) : (
 								<Button
+									loading={!!isCreatingUser}
+									disabled={!!isCreatingUser}
 									onClick={async () => await createUser(wallet.publicKey)}
 									className="bg-[#4E44CE] text-[#CDC0FF] "
 								>
+									{isCreatingUser && (
+										<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+									)}
 									Create user
 								</Button>
 							)}
@@ -82,18 +88,18 @@ export default function CreateProfile() {
 }
 
 function ProfileForm({ sdk, userPDA, owner }) {
-	const [username, setUsername] = React.useState("");
 	const [name, setName] = React.useState("");
+	const [username, setUsername] = React.useState("");
 	const [bio, setBio] = React.useState("");
 	const [avatarFile, setAvatarFile] = React.useState("");
-	const [status, setStatus] = React.useState(""); // loading, success, error
+	const [metadataStatus, setMetadataStatus] = React.useState(""); // loading, success, error
 
 	const fileInputRef = React.useRef();
 
+	const router = useRouter();
+
 	const { create, profilePDA, createProfileError, isCreatingProfile } =
 		useCreateProfile(sdk);
-
-	const router = useRouter();
 
 	const uploader = new IpfsUploader({
 		uploadWithGatewayUrl: true,
@@ -104,21 +110,29 @@ function ProfileForm({ sdk, userPDA, owner }) {
 		if (!profilePDA) return;
 
 		console.log("Profile PDA: ", profilePDA.toString());
-		router.push(`/profile/${profilePDA}`);
-	}, [profilePDA, router]);
+		if (!isCreatingProfile) {
+			router.push(`profile/${profilePDA}`);
+		}
+	}, [profilePDA, router, isCreatingProfile]);
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 		console.log({ username, name, bio, avatarFile });
 
-		setStatus("loading");
-
-		// upload avatar
-		const avatarUri = await storage.upload({ avatar: avatarFile });
-		const avatarUrl = storage.resolveScheme(avatarUri);
+		setMetadataStatus("loading");
+		const avatarUrl = await uploadAvatar();
+		if (!avatarUrl) return;
 		console.log({ avatarUrl });
 
-		// upload metadata
+		const metadataUrl = await uploadMetadata(avatarUrl);
+		if (!metadataUrl) return;
+		console.log({ metadataUrl });
+		setMetadataStatus("success");
+
+		await create(metadataUrl, "Professional", userPDA, owner);
+	}
+
+	async function uploadMetadata(avatarUrl) {
 		const metadata = {
 			username,
 			name,
@@ -129,12 +143,16 @@ function ProfileForm({ sdk, userPDA, owner }) {
 
 		const uri = await storage.upload(metadata);
 		const url = storage.resolveScheme(uri);
-		console.log({ url });
+		return url;
+	}
 
-		// create profile
-		await create(url, "Professional", userPDA, owner);
-
-		setStatus("success");
+	async function uploadAvatar() {
+		if (!avatarFile || avatarFile.length === 0) {
+			alert("Please upload an avatar file");
+			return;
+		}
+		const avatarUri = await storage.upload({ avatar: avatarFile });
+		return storage.resolveScheme(avatarUri);
 	}
 
 	return (
@@ -202,15 +220,14 @@ function ProfileForm({ sdk, userPDA, owner }) {
 				onChange={(e) => setBio(e.target.value)}
 				className="px-3 py-2 rounded-md w-full h-28 bg-[#5B5B5B] text-[#CDC0FF]"
 			/>
-			{createProfileError?.toString()}
 			<div className="mt-4">
 				<Button
-					disabled={status === "loading"}
+					disabled={metadataStatus === "loading" || isCreatingProfile}
 					className="bg-[#4E44CE] text-[#CDC0FF] px-16"
 				>
-					{status === "loading" && (
+					{metadataStatus === "loading" || isCreatingProfile ? (
 						<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-					)}
+					) : undefined}
 					Create
 				</Button>
 			</div>
