@@ -2,18 +2,11 @@ import { useGum } from "@gumhq/react-sdk";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { GraphQLClient } from "graphql-request";
 
-export const useGumSDK = (
-	connection,
-	opts,
-	cluster,
-	gqlEndpoint = undefined
-) => {
+export const useGumSDK = (connection, opts, cluster) => {
 	const anchorWallet = useAnchorWallet();
-	let gqlClient;
-
-	if (gqlEndpoint) {
-		gqlClient = new GraphQLClient(gqlEndpoint);
-	}
+	const gqlClient = new GraphQLClient(
+		"https://light-pelican-32.hasura.app/v1/graphql"
+	);
 
 	const sdk = useGum(anchorWallet, connection, opts, cluster, gqlClient);
 

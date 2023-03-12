@@ -9,10 +9,12 @@ import { Textarea } from "@/components/ui/Textarea";
 import { useGumContext } from "@/context/GumProvider";
 import { useCreateProfile, useCreateUser } from "@gumhq/react-sdk";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { IpfsUploader, ThirdwebStorage } from "@thirdweb-dev/storage";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function CreateProfile() {
@@ -36,6 +38,7 @@ export default function CreateProfile() {
 					<Link href="/" className="text-2xl font-bold">
 						<Image src={logo} alt="Maker3 Logo" />
 					</Link>
+					<WalletMultiButton />
 				</div>
 			</header>
 			<main className="flex-1">
@@ -90,14 +93,19 @@ function ProfileForm({ sdk, userPDA, owner }) {
 	const { create, profilePDA, createProfileError, isCreatingProfile } =
 		useCreateProfile(sdk);
 
+	const router = useRouter();
+
 	const uploader = new IpfsUploader({
 		uploadWithGatewayUrl: true,
 	});
 	const storage = new ThirdwebStorage({ uploader });
 
 	React.useEffect(() => {
-		console.log("Profile PDA: ", profilePDA?.toString());
-	}, [profilePDA]);
+		if (!profilePDA) return;
+
+		console.log("Profile PDA: ", profilePDA.toString());
+		router.push(`/profile/${profilePDA}`);
+	}, [profilePDA, router]);
 
 	async function handleSubmit(event) {
 		event.preventDefault();

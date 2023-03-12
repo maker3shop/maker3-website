@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@candypay/checkout-sdk": "^0.1.51",
-		"@gumhq/react-sdk": "^1.0.8",
+		"@gumhq/react-sdk": "^1.0.12",
 		"@radix-ui/react-aspect-ratio": "^1.0.1",
 		"@radix-ui/react-avatar": "^1.0.1",
 		"@solana/wallet-adapter-base": "^0.9.22",
