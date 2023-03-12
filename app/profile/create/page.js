@@ -1,8 +1,8 @@
 "use client";
 
-import avatarEmpty from "@/app/assets/images/avatar-empty.svg";
-import gumLogo from "@/app/assets/images/gum-logo.png";
-import logo from "@/app/assets/images/logo.svg";
+import avatarEmpty from "@/public/images/avatar-empty.svg";
+import gumLogo from "@/public/images/gum-logo.png";
+import logo from "@/public/images/logo.svg";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";

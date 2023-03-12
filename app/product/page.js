@@ -1,7 +1,7 @@
 "use client";
 
-import logo from "@/app/assets/images/logo.svg";
-import openai from "@/app/assets/images/openai.svg";
+import logo from "@/public/images/logo.svg";
+import openai from "@/public/images/openai.svg";
 import Container from "@/components/Container";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";

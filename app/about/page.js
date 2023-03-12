@@ -1,6 +1,6 @@
-import denimAvatar from "@/app/assets/images/denim-avatar.svg";
-import logo from "@/app/assets/images/logo.svg";
-import rohanAvatar from "@/app/assets/images/rohan-avatar.svg";
+import denimAvatar from "@/public/images/denim-avatar.svg";
+import logo from "@/public/images/logo.svg";
+import rohanAvatar from "@/public/images/rohan-avatar.svg";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/Button";
 import { Github, Twitter } from "lucide-react";

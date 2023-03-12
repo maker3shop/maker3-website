@@ -1,7 +1,7 @@
 "use client";
 
-import avatarEmpty from "@/app/assets/images/avatar-empty.svg";
-import logo from "@/app/assets/images/logo.svg";
+import avatarEmpty from "@/public/images/avatar-empty.svg";
+import logo from "@/public/images/logo.svg";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/Button";
 import { useGumContext } from "@/context/GumProvider";

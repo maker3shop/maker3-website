@@ -1,8 +1,8 @@
-import chart from "@/app/assets/images/chart.svg";
-import coins from "@/app/assets/images/coins.svg";
-import dashboardPreview from "@/app/assets/images/dashboard-preview.svg";
-import logo from "@/app/assets/images/logo.svg";
-import shop from "@/app/assets/images/shop.svg";
+import chart from "@/public/images/chart.svg";
+import coins from "@/public/images/coins.svg";
+import dashboardPreview from "@/public/images/dashboard-preview.svg";
+import logo from "@/public/images/logo.svg";
+import shop from "@/public/images/shop.svg";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/Button";
 import { Heading2, Text } from "@/components/ui/Typography";
