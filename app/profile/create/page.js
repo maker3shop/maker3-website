@@ -1,12 +1,12 @@
 "use client";
 
-import avatarEmpty from "@/public/images/avatar-empty.svg";
-import gumLogo from "@/public/images/gum-logo.png";
-import logo from "@/public/images/logo.svg";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { useGumContext } from "@/context/GumProvider";
+import avatarEmpty from "@/public/images/avatar-empty.svg";
+import gumLogo from "@/public/images/gum-logo.png";
+import logo from "@/public/images/logo.svg";
 import { useCreateProfile, useCreateUser } from "@gumhq/react-sdk";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -228,7 +228,11 @@ function ProfileForm({ sdk, userPDA, owner }) {
 					{uploadStatus === "loading" || isCreatingProfile ? (
 						<Loader2 className="mr-2 h-4 w-4 animate-spin" />
 					) : undefined}
-					Create
+					{uploadStatus === "loading" ? "Uploading metadata" : undefined}
+					{isCreatingProfile ? "Creating profile" : undefined}
+					{uploadStatus !== "loading" && !isCreatingProfile
+						? "Create"
+						: undefined}
 				</Button>
 			</div>
 		</form>

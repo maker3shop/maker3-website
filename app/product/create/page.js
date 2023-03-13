@@ -269,7 +269,11 @@ function CreateProductForm() {
 					{uploadStatus === "loading" || isCreatingProduct ? (
 						<Loader2 className="mr-2 h-4 w-4 animate-spin" />
 					) : undefined}
-					Publish
+					{uploadStatus === "loading" ? "Uploading metadata" : undefined}
+					{isCreatingProduct ? "Creating product" : undefined}
+					{uploadStatus !== "loading" && !isCreatingProduct
+						? "Publish"
+						: undefined}
 				</Button>
 			</div>
 		</form>

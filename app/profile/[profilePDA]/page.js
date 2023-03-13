@@ -7,8 +7,10 @@ import avatarEmpty from "@/public/images/avatar-empty.svg";
 import logo from "@/public/images/logo.svg";
 import { useProfile } from "@gumhq/react-sdk";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function Profile({ params }) {
@@ -16,8 +18,10 @@ export default function Profile({ params }) {
 
 	const [avatar, setAvatar] = React.useState("");
 
+	const router = useRouter();
+
 	const sdk = useGumContext();
-	const { profile, profileError } = useProfile(sdk, profilePDA);
+	const { profile, profileError, profileLoading } = useProfile(sdk, profilePDA);
 
 	React.useEffect(() => {
 		if (!profile) return;
@@ -37,6 +41,33 @@ export default function Profile({ params }) {
 	React.useEffect(() => {
 		console.log({ profileError });
 	}, [profileError]);
+
+	if (profileLoading) {
+		return (
+			<div className="bg-[#cdc0ff] grid place-content-center min-h-screen">
+				<div className="flex items-center gap-4">
+					<Loader2 className="mr-2 h-8 w-8 animate-spin" />
+					<p className="text-2xl">Loading Profile</p>
+				</div>
+			</div>
+		);
+	}
+
+	if (profileError || !profile) {
+		return (
+			<div className="bg-[#cdc0ff] grid place-content-center min-h-screen">
+				<div className="flex items-center gap-4">
+					<p className="text-xl">Error loading profile</p>
+					<Button
+						onClick={() => router.refresh()}
+						className="bg-[#4E44CE] text-[#CDC0FF] "
+					>
+						Try Again
+					</Button>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="bg-[#CDC0FF] min-h-screen">

@@ -7,7 +7,7 @@ import { useGumContext } from "@/context/GumProvider";
 import logo from "@/public/images/logo.svg";
 import { usePost } from "@gumhq/react-sdk";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
-import { Twitter } from "lucide-react";
+import { Loader2, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -101,6 +101,33 @@ export default function Product({ params }) {
 
 		const json = await response.json();
 		router.push(json.payment_url);
+	}
+
+	if (productLoading) {
+		return (
+			<div className="bg-[#cdc0ff] grid place-content-center min-h-screen">
+				<div className="flex items-center gap-4">
+					<Loader2 className="mr-2 h-8 w-8 animate-spin" />
+					<p className="text-2xl">Loading Profile</p>
+				</div>
+			</div>
+		);
+	}
+
+	if (productError || !product) {
+		return (
+			<div className="bg-[#cdc0ff] grid place-content-center min-h-screen">
+				<div className="flex items-center gap-4">
+					<p className="text-xl">Error loading product</p>
+					<Button
+						onClick={() => router.refresh()}
+						className="bg-[#4E44CE] text-[#CDC0FF] "
+					>
+						Try Again
+					</Button>
+				</div>
+			</div>
+		);
 	}
 
 	return (
