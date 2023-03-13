@@ -92,7 +92,7 @@ function ProfileForm({ sdk, userPDA, owner }) {
 	const [username, setUsername] = React.useState("");
 	const [bio, setBio] = React.useState("");
 	const [avatarFile, setAvatarFile] = React.useState("");
-	const [metadataStatus, setMetadataStatus] = React.useState(""); // loading, success, error
+	const [uploadStatus, setUploadStatus] = React.useState(""); // loading, success, error
 
 	const fileInputRef = React.useRef();
 
@@ -119,7 +119,7 @@ function ProfileForm({ sdk, userPDA, owner }) {
 		event.preventDefault();
 		console.log({ username, name, bio, avatarFile });
 
-		setMetadataStatus("loading");
+		setUploadStatus("loading");
 		const avatarUrl = await uploadAvatar();
 		if (!avatarUrl) return;
 		console.log({ avatarUrl });
@@ -127,7 +127,7 @@ function ProfileForm({ sdk, userPDA, owner }) {
 		const metadataUrl = await uploadMetadata(avatarUrl);
 		if (!metadataUrl) return;
 		console.log({ metadataUrl });
-		setMetadataStatus("success");
+		setUploadStatus("success");
 
 		await create(metadataUrl, "Professional", userPDA, owner);
 	}
@@ -222,10 +222,10 @@ function ProfileForm({ sdk, userPDA, owner }) {
 			/>
 			<div className="mt-4">
 				<Button
-					disabled={metadataStatus === "loading" || isCreatingProfile}
+					disabled={uploadStatus === "loading" || isCreatingProfile}
 					className="bg-[#4E44CE] text-[#CDC0FF] px-16"
 				>
-					{metadataStatus === "loading" || isCreatingProfile ? (
+					{uploadStatus === "loading" || isCreatingProfile ? (
 						<Loader2 className="mr-2 h-4 w-4 animate-spin" />
 					) : undefined}
 					Create
