@@ -10,18 +10,24 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import {
 	GlowWalletAdapter,
 	PhantomWalletAdapter,
+	SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
+
+const HELIUS_DEVNET_RPC = process.env.NEXT_PUBLIC_HELIUS_DEVNET_RPC;
 
 export default function Wallet({ children }) {
 	const network = WalletAdapterNetwork.Devnet;
 
-	const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
+	const endpoint = React.useMemo(() => HELIUS_DEVNET_RPC, []);
 
 	const wallets = React.useMemo(
-		() => [new GlowWalletAdapter(network), new PhantomWalletAdapter(network)],
+		() => [
+			new GlowWalletAdapter(network),
+			new PhantomWalletAdapter(network),
+			new SolflareWalletAdapter(network),
+		],
 		[network]
 	);
 

@@ -5,6 +5,8 @@ import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { Connection } from "@solana/web3.js";
 import { useGumSDK } from "@/hooks/useGumSDK";
 
+const HELIUS_DEVNET_RPC = process.env.NEXT_PUBLIC_HELIUS_DEVNET_RPC;
+
 const GumContext = React.createContext();
 
 export function useGumContext() {
@@ -13,7 +15,7 @@ export function useGumContext() {
 
 export default function GumProvider({ children }) {
 	const connection = React.useMemo(
-		() => new Connection("https://api.devnet.solana.com", "confirmed"),
+		() => new Connection(HELIUS_DEVNET_RPC, "confirmed"),
 		[]
 	);
 	const sdk = useGumSDK(
