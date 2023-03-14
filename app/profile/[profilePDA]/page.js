@@ -54,7 +54,7 @@ export default function Profile({ params }) {
 	}
 
 	if (profileError || !profile) {
-		return 
+		return (
 			<div className="bg-[#cdc0ff] grid place-content-center min-h-screen">
 				<div className="flex items-center gap-4">
 					<p className="text-xl">Error loading profile</p>
