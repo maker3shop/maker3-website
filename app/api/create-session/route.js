@@ -13,6 +13,7 @@ const sdk = new CandyPay({
 
 export async function POST(request) {
 	const items = await request.json();
+	console.log({ items });
 
 	try {
 		const response = await sdk.session.create({
@@ -25,6 +26,7 @@ export async function POST(request) {
 
 		return Response.json(response);
 	} catch (error) {
+		console.log(error);
 		return new Response(error, {
 			status: 500,
 		});

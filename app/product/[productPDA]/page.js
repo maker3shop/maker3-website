@@ -24,6 +24,8 @@ export default function Product({ params }) {
 	const [username, setUsername] = React.useState("");
 	const [avatar, setAvatar] = React.useState("");
 
+	const [status, setStatus] = React.useState(""); //loading, success, error
+
 	const router = useRouter();
 
 	const sdk = useGumContext();
@@ -84,6 +86,7 @@ export default function Product({ params }) {
 	}, [productError]);
 
 	async function createSession() {
+		setStatus("loading");
 		const response = await fetch("/api/create-session", {
 			method: "POST",
 			headers: {
@@ -91,16 +94,22 @@ export default function Product({ params }) {
 			},
 			body: JSON.stringify([
 				{
-					name: product.title,
-					price: product.price,
+					name: "Open AI Template",
+					price: 6.7,
 					image: "",
 					quantity: 1,
 				},
 			]),
 		});
 
+		if (response.status !== 200) {
+			setStatus("error");
+			return;
+		}
+
 		const json = await response.json();
 		router.push(json.payment_url);
+		setStatus("success");
 	}
 
 	if (productLoading) {
@@ -168,7 +177,12 @@ export default function Product({ params }) {
 						<aside className="p-4 text-center drop-shadow-lg space-y-4 mt-8 self-start bg-blue-100 rounded-md">
 							<h4 className="text-xl font-semibold">{title}</h4>
 							<p className="text-2xl">{`${price} USDC`}</p>
-							<Button onClick={createSession}>Buy</Button>
+							<Button disabled={status === "loading"} onClick={createSession}>
+								{status === "loading" ? (
+									<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+								) : undefined}
+								Buy
+							</Button>
 						</aside>
 					</main>
 				</Container>

@@ -161,7 +161,7 @@ function ProfileForm({ sdk, userPDA, owner }) {
 			className="flex flex-col items-center gap-y-3 w-80"
 		>
 			<div className="mb-4 flex items-center flex-col">
-				<Image
+o			<Image
 					id="avatar"
 					src={avatarFile || avatarEmpty}
 					alt="avatar"
