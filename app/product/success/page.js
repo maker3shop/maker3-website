@@ -41,7 +41,7 @@ export default function Success() {
 									<p>
 										Price:{" "}
 										<span className="font-semibold text-[#7A57FF]">
-											6.7 SOL
+											6.7 USDC
 										</span>
 									</p>
 								</div>
